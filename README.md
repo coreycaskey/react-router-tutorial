@@ -2,5 +2,5 @@
 
 Completed v6 and v7 tutorials for React Router
 
-- [v6]: https://github.com/coreycaskey/react-router-tutorial/v6
-- [v7]: https://github.com/coreycaskey/react-router-tutorial/v7
+- [v6](https://github.com/coreycaskey/react-router-tutorial/v6)
+- [v7](https://github.com/coreycaskey/react-router-tutorial/v7)
