@@ -5,14 +5,14 @@ import {
   Outlet,
   useNavigation,
   useSubmit,
-} from 'react-router';
-import { getContacts } from '../data';
-import type { Route } from './+types/sidebar';
-import { useState, useEffect } from 'react';
+} from "react-router";
+import { getContacts } from "../data";
+import type { Route } from "./+types/sidebar";
+import { useState, useEffect } from "react";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
-  const q = url.searchParams.get('q');
+  const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
   return { contacts, q };
 }
@@ -23,17 +23,17 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
   const submit = useSubmit();
 
   // the query now needs to be kept in state
-  const [query, setQuery] = useState(q || '');
+  const [query, setQuery] = useState(q || "");
 
   // we still have a `useEffect` to synchronize the query
   // to the component state on back/forward button clicks
   useEffect(() => {
-    setQuery(q || '');
+    setQuery(q || "");
   }, [q]);
 
   const searching =
     navigation.location &&
-    new URLSearchParams(navigation.location.search).has('q');
+    new URLSearchParams(navigation.location.search).has("q");
 
   return (
     <>
@@ -46,13 +46,13 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
             id="search-form"
             onChange={(e) => {
               const isFirstSearch = q === null;
-              submit(e.currentTarget, { replace: !isFirstSearch });
+              void submit(e.currentTarget, { replace: !isFirstSearch });
             }}
             role="search"
           >
             <input
               aria-label="Search contacts"
-              className={searching ? 'loading' : ''}
+              className={searching ? "loading" : ""}
               id="q"
               name="q"
               onChange={(e) => setQuery(e.currentTarget.value)}
@@ -73,7 +73,7 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
                 <li key={contact.id}>
                   <NavLink
                     className={({ isActive, isPending }) =>
-                      isActive ? 'active' : isPending ? 'pending' : ''
+                      isActive ? "active" : isPending ? "pending" : ""
                     }
                     to={`contacts/${contact.id}`}
                   >
@@ -98,7 +98,7 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
       </div>
       <div
         className={
-          navigation.state === 'loading' && !searching ? 'loading' : ''
+          navigation.state === "loading" && !searching ? "loading" : ""
         }
         id="detail"
       >

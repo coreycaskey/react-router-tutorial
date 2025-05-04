@@ -1,6 +1,6 @@
 # React Router Demo
 
-This is a completed example of the [v7 React Router Demo](https://reactrouter.com/en/main/start/tutorial).
+This is a completed example of the [v7 React Router Demo](https://reactrouter.com/en/main/start/tutorial), specifically using "framework" mode.
 
 ## Development
 

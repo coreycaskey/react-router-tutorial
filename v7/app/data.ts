@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/require-await */
+
 ////////////////////////////////////////////////////////////////////////////////
 // 🛑 Nothing in here has anything to do with React Router, it's just a fake database
 ////////////////////////////////////////////////////////////////////////////////
