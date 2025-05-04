@@ -3,7 +3,7 @@ import { matchSorter } from 'match-sorter';
 import sortBy from 'sort-by';
 
 import { STORAGE_KEY } from '~/helpers/global-constants';
-import { Contact, FakeCache } from '~/helpers/global-types';
+import { type Contact, type FakeCache } from '~/helpers/global-types';
 
 // fake a cache so we don't slow down stuff we've already seen
 let fakeCache: FakeCache = {};

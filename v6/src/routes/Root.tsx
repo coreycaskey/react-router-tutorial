@@ -12,7 +12,10 @@ import {
 import { createContact, getContacts } from '~/helpers/contacts';
 
 import { SEARCH_PARAM_KEY } from './helpers/route-constants';
-import { RootLoaderData, RootLoaderProps } from './helpers/route-types';
+import {
+  type RootLoaderData,
+  type RootLoaderProps,
+} from './helpers/route-types';
 
 export const loader = async ({ request }: RootLoaderProps) => {
   const url = new URL(request.url);

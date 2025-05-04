@@ -1,4 +1,4 @@
-import { Contact } from '~/helpers/global-types';
+import { type Contact } from '~/helpers/global-types';
 
 export interface RootLoaderProps {
   request: Request;

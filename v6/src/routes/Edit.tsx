@@ -1,16 +1,16 @@
 import {
-  ActionFunctionArgs,
+  type ActionFunctionArgs,
   Form,
-  LoaderFunctionArgs,
+  type LoaderFunctionArgs,
   redirect,
   useLoaderData,
   useNavigate,
 } from 'react-router-dom';
 
 import { getContact, updateContact } from '~/helpers/contacts';
-import { Contact } from '~/helpers/global-types';
+import { type Contact } from '~/helpers/global-types';
 
-import { EditLoaderData } from './helpers/route-types';
+import { type EditLoaderData } from './helpers/route-types';
 
 export const loader = async ({
   params,

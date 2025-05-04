@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, redirect } from 'react-router-dom';
+import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
 
 import { deleteContact } from '~/helpers/contacts';
 

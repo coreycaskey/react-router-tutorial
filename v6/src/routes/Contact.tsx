@@ -1,14 +1,14 @@
 import {
-  ActionFunctionArgs,
+  type ActionFunctionArgs,
   Form,
-  LoaderFunctionArgs,
+  type LoaderFunctionArgs,
   useLoaderData,
 } from 'react-router-dom';
 
 import { Favorite } from '~/components/Favorite';
 import { getContact, updateContact } from '~/helpers/contacts';
 
-import { ContactLoaderData } from './helpers/route-types';
+import { type ContactLoaderData } from './helpers/route-types';
 
 export const loader = async ({
   params,

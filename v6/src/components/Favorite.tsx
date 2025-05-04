@@ -1,6 +1,6 @@
 import { useFetcher } from 'react-router-dom';
 
-import { Contact } from '~/helpers/global-types';
+import { type Contact } from '~/helpers/global-types';
 
 interface FavoriteProps {
   contact: Contact;
