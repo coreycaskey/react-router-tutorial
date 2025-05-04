@@ -3,33 +3,31 @@ import {
   Form,
   type LoaderFunctionArgs,
   useLoaderData,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { Favorite } from '~/components/Favorite';
-import { getContact, updateContact } from '~/helpers/contacts';
+import { Favorite } from "~/components/Favorite";
+import { getContact, updateContact } from "~/data/contacts";
 
-import { type ContactLoaderData } from './helpers/route-types';
+import { type ContactLoaderData } from "~/data/types";
 
-export const loader = async ({
-  params,
-}: LoaderFunctionArgs): Promise<ContactLoaderData> => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const contact = await getContact(params.contactId!);
 
   if (!contact) {
-    throw new Response('', {
+    throw new Response("", {
       status: 404,
-      statusText: 'Contact Not Found',
+      statusText: "Contact Not Found",
     });
   }
 
-  return { contact };
+  return { contact } satisfies ContactLoaderData;
 };
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   const formData = await request.formData();
 
   return updateContact(params.contactId!, {
-    favorite: formData.get('favorite') === 'true',
+    favorite: formData.get("favorite") === "true",
   });
 };
 
@@ -39,7 +37,13 @@ export const Contact = () => {
   return (
     <div id="contact">
       <div>
-        <img key={contact.id} src={contact.avatar} />
+        <img
+          key={contact.id}
+          src={
+            contact.avatar ||
+            `https://robohash.org/${contact.id}.png?size=200x200`
+          }
+        />
       </div>
 
       <div>
@@ -50,13 +54,17 @@ export const Contact = () => {
             </>
           ) : (
             <i>No Name</i>
-          )}{' '}
+          )}{" "}
           <Favorite contact={contact} />
         </h1>
 
         {contact.twitter && (
           <p>
-            <a target="_blank" href={`https://twitter.com/${contact.twitter}`}>
+            <a
+              target="_blank"
+              href={`https://twitter.com/${contact.twitter}`}
+              rel="noreferrer"
+            >
               {contact.twitter}
             </a>
           </p>
@@ -73,7 +81,7 @@ export const Contact = () => {
             method="post"
             action="destroy"
             onSubmit={(event) => {
-              if (!confirm('Please confirm you want to delete this record.')) {
+              if (!confirm("Please confirm you want to delete this record.")) {
                 event.preventDefault();
               }
             }}

@@ -1,16 +1,16 @@
-import { useFetcher } from 'react-router-dom';
+import { useFetcher } from "react-router-dom";
 
-import { type Contact } from '~/helpers/global-types';
+import { type Contact } from "~/data/types";
 
 interface FavoriteProps {
   contact: Contact;
 }
 
-export const Favorite: React.FC<FavoriteProps> = ({ contact }) => {
+export const Favorite = ({ contact }: FavoriteProps) => {
   const fetcher = useFetcher();
 
   const favorite = fetcher.formData
-    ? fetcher.formData.get('favorite') === 'true'
+    ? fetcher.formData.get("favorite") === "true"
     : contact.favorite;
 
   /*
@@ -23,10 +23,10 @@ export const Favorite: React.FC<FavoriteProps> = ({ contact }) => {
     <fetcher.Form method="post">
       <button
         name="favorite"
-        value={favorite ? 'false' : 'true'}
-        aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+        value={favorite ? "false" : "true"}
+        aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
       >
-        {favorite ? '★' : '☆'}
+        {favorite ? "★" : "☆"}
       </button>
     </fetcher.Form>
   );

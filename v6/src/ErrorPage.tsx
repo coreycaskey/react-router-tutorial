@@ -1,10 +1,9 @@
-import { useRouteError } from 'react-router-dom';
+import { useRouteError } from "react-router-dom";
 
-import { type RouteError } from './helpers/global-types';
+import { type RouteError } from "~/data/types";
 
 export const ErrorPage = () => {
   const error = useRouteError() as RouteError;
-
   console.error(error);
 
   return (

@@ -1,39 +1,24 @@
-import localforage from 'localforage';
-import { matchSorter } from 'match-sorter';
-import sortBy from 'sort-by';
+////////////////////////////////////////////////////////////////////////////////
+// 🛑 Nothing in here has anything to do with React Router, it's just a fake database
+////////////////////////////////////////////////////////////////////////////////
 
-import { STORAGE_KEY } from '~/helpers/global-constants';
-import { type Contact, type FakeCache } from '~/helpers/global-types';
+import localforage from "localforage";
+import { matchSorter } from "match-sorter";
+import sortBy from "sort-by";
 
-// fake a cache so we don't slow down stuff we've already seen
-let fakeCache: FakeCache = {};
+import { type Contact, type FakeCache } from "./types";
 
-const fakeNetwork = async (key: string = '') => {
-  if (!key) {
-    fakeCache = {};
-  }
+const STORAGE_KEY = "contacts";
 
-  if (fakeCache[key]) {
-    return;
-  }
-
-  fakeCache[key] = true;
-
-  return new Promise((res) => {
-    setTimeout(res, Math.random() * 800);
-  });
-};
-
-export const getContacts = async (query: string = '') => {
+export const getContacts = async (query: string = "") => {
   await fakeNetwork(`getContacts:${query}`);
-
   let contacts = await get();
 
   if (query) {
-    contacts = matchSorter(contacts, query, { keys: ['first', 'last'] });
+    contacts = matchSorter(contacts, query, { keys: ["first", "last"] });
   }
 
-  return contacts.sort(sortBy('last', 'createdAt'));
+  return contacts.sort(sortBy("last", "createdAt"));
 };
 
 export const createContact = async () => {
@@ -43,9 +28,7 @@ export const createContact = async () => {
   const contact: Contact = { id, createdAt: Date.now() };
   const contacts = await getContacts();
   contacts.unshift(contact);
-
   await set(contacts);
-
   return contact;
 };
 
@@ -54,8 +37,7 @@ export const getContact = async (id: string) => {
 
   const contacts = await get();
   const contact = contacts.find((contact) => contact.id === id);
-
-  return contact;
+  return contact ?? null;
 };
 
 export const updateContact = async (id: string, updates: Partial<Contact>) => {
@@ -69,9 +51,7 @@ export const updateContact = async (id: string, updates: Partial<Contact>) => {
   }
 
   Object.assign(contact, updates);
-
   await set(contacts);
-
   return contact;
 };
 
@@ -81,9 +61,7 @@ export const deleteContact = async (id: string) => {
 
   if (index > -1) {
     contacts.splice(index, 1);
-
     await set(contacts);
-
     return true;
   }
 
@@ -95,5 +73,24 @@ const set = (contacts: Contact[]) => {
 };
 
 const get = async () => {
-  return ((await localforage.getItem(STORAGE_KEY)) ?? []) as Contact[];
+  return (await localforage.getItem<Contact[]>(STORAGE_KEY)) ?? [];
+};
+
+// fake a cache so we don't slow down stuff we've already seen
+let fakeCache: FakeCache = {};
+
+const fakeNetwork = async (key: string = "") => {
+  if (!key) {
+    fakeCache = {};
+  }
+
+  if (fakeCache[key]) {
+    return;
+  }
+
+  fakeCache[key] = true;
+
+  return new Promise((res) => {
+    setTimeout(res, Math.random() * 800);
+  });
 };

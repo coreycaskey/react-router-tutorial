@@ -17,3 +17,16 @@ export interface RouteError {
   statusText?: string;
   message?: string;
 }
+
+export interface RootLoaderData {
+  contacts: Contact[];
+  searchValue: string | undefined;
+}
+
+export interface ContactLoaderData {
+  contact: Contact;
+}
+
+export interface EditLoaderData {
+  contact: Contact;
+}
