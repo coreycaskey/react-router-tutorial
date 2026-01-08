@@ -11,7 +11,7 @@
     "tsc": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@react-router/node": "^7.5.3",
+    "@react-router/node": "^7.9.4",
     "@react-router/serve": "^7.5.3",
     "isbot": "^5.1.17",
     "match-sorter": "^8.0.0",
