@@ -16,7 +16,7 @@
     "match-sorter": "^8.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^6.30.0",
+    "react-router-dom": "^6.30.3",
     "sort-by": "^0.0.2"
   },
   "devDependencies": {
